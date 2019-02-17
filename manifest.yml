@@ -1,0 +1,10 @@
+---
+applications:
+- name: eb9686ea-8945-4505-8f39-aa32e643e544
+  memory: 256M
+  instances: 4
+  path: .
+  host: eb9686ea-8945-4505-8f39-aa32e643e544
+  services:
+  - 65e38832-7624-4f85-8be5-7a42d2cadcbe
+  - 18a1c4d8-a9fb-4aa1-a96e-94ad86ddb471

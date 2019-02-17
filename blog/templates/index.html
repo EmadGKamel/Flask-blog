@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }} {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span> {% endfor %}
+                    </div>
+                {% else %} {{ form.title(class="form-control form-control-lg") }} {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }} {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span> {% endfor %}
+                    </div>
+                {% else %} {{ form.content(class="form-control form-control-lg") }} {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+        {{ form.posting(class="btn btn-outline-info") }}
+      </div>
+        </form>
+    </div>
+    {% for post in posts.items %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img"
+                 src="{{ url_for('static', filename='images/' + post.author.image) }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{{ url_for('profile') }}">{{ post.author.username }}</a>
+                    <small class="text-muted">{{ post.date.strftime('%B %d, %Y at %I:%M %p') }}</small>
+                </div>
+                <h2><a class="article-title" href="{{ url_for('post', story=post.id) }}">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{#        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}#}
+{#        {% if page_num %}#}
+{#            {% if posts.page == page_num %}#}
+{#                <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}"#}
+{#            {% else %}#}
+{#                <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}"#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
